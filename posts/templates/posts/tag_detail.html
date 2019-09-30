@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{%block content_title%}
+{%endblock%}
+{%block content%}
+    {% for post in posts %}
+        <a href="{{url_for('posts.post_detail', slug=post.slug)}}">{{post.tittle}}</a><br>
+    {% endfor %}
+{%endblock%}

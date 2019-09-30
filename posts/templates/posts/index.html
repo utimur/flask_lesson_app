@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+    POSTS
+{% endblock %}
+
+{% block content %}
+
+ {% for post in pages.items %}
+<p>
+  <a href="{{url_for('posts.post_detail',slug=post.slug)}}">
+     {{ post.tittle }}
+  </a>
+</p>
+ {% endfor %}
+
+<nav aria-label="...">
+  <ul class="pagination">
+    <li {% if not pages.has_prev %}
+            class="page-item disabled"
+        {% endif %}
+    >
+      <a class="page-link" href="./?page={{pages.prev_num}}" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+        {% for page in pages.iter_pages() %}
+          <li {% if page==pages.page %} class="page-item active" {%endif%}aria-current="page">
+              <a class="page-link" href="./?page={{page}}"> {{page}} <span class="sr-only">(current)</span></a>
+        {% endfor %}
+    </li>
+    <li {% if not pages.has_next %}
+            class="page-item disabled"
+        {% endif %}
+    >
+      <a class="page-link" href="./?page={{pages.next_num}}">Next</a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}

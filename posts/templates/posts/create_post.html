@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create new post
+{% endblock %}
+{% block content_title %}
+    New post
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8">
+    <form action="{{url_for('posts.create_post')}}" method="POST">
+        {%for i in form %}
+            <div class="form-group">
+                {{i.label(class='control-label')}}
+                {{i(class='form-control')}}
+            </div>
+        {% endfor%}
+        <button type="submit" class="btn btn-success">Success</button>
+    </form>
+</div>
+{%endblock%}
